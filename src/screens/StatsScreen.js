@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, Dimensions, ActivityIndicator, Platform  } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Dimensions, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
-import { useIsFocused } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -9,6 +9,7 @@ const StatsScreen = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const isFocused = useIsFocused();
+  const navigation = useNavigation();
   const { width } = Dimensions.get('window');
 
   // Función para procesar los datos del almacenamiento local
@@ -144,6 +145,12 @@ const StatsScreen = () => {
             Última entrada: {stats.lastEntry.formattedDate}
           </Text>
         )}
+        <TouchableOpacity
+          style={styles.navigationButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Text style={styles.navigationButtonText}>Volver</Text>
+        </TouchableOpacity>
       </View>
       
       {stats.totalEntries > 0 ? (
@@ -215,7 +222,7 @@ const StatsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#ffffff',
     padding: 20,
     paddingTop: 80,
   },
@@ -223,7 +230,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#ffffff',
   },
   headerContainer: {
     marginBottom: 30,
@@ -232,12 +239,12 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#2a2a2a',
+    color: '#000000',
     marginBottom: 5,
   },
   lastEntryDate: {
     fontSize: 14,
-    color: '#7f8c8d',
+    color: '#606060',
     fontStyle: 'italic',
   },
   statsRow: {
@@ -247,7 +254,7 @@ const styles = StyleSheet.create({
   },
   statCard: {
     width: '48%',
-    backgroundColor: 'white',
+    backgroundColor: '#f0f0f0',
     borderRadius: 12,
     padding: 15,
     alignItems: 'center',
@@ -260,6 +267,7 @@ const styles = StyleSheet.create({
   statIcon: {
     fontSize: 30,
     marginBottom: 5,
+    color: '#000000',
   },
   statValue: {
     fontSize: 24,
@@ -269,13 +277,13 @@ const styles = StyleSheet.create({
   },
   statTitle: {
     fontSize: 14,
-    color: '#666',
+    color: '#606060',
     textAlign: 'center',
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#34495e',
+    color: '#000000',
     marginBottom: 15,
     marginTop: 20,
   },
@@ -286,7 +294,7 @@ const styles = StyleSheet.create({
   },
   emotionBadge: {
     width: '32%',
-    backgroundColor: 'white',
+    backgroundColor: '#1e1e1e',
     borderRadius: 12,
     padding: 15,
     alignItems: 'center',
@@ -299,16 +307,17 @@ const styles = StyleSheet.create({
   emotionEmoji: {
     fontSize: 28,
     marginBottom: 5,
+    color: '#ffffff',
   },
   emotionName: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#2c3e50',
+    color: '#ffffff',
     marginBottom: 3,
   },
   emotionCount: {
     fontSize: 12,
-    color: '#7f8c8d',
+    color: '#b0b0b0',
   },
   chart: {
     marginVertical: 8,
@@ -316,7 +325,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   insightBox: {
-    backgroundColor: '#4a6fa5',
+    backgroundColor: '#000000',
     borderRadius: 12,
     padding: 20,
     marginTop: 30,
@@ -324,7 +333,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   insightText: {
-    color: 'white',
+    color: '#ffffff',
     fontSize: 16,
     fontWeight: '500',
     marginLeft: 10,
@@ -337,15 +346,27 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 18,
-    color: '#2c3e50',
+    color: '#000000',
     marginBottom: 10,
     marginTop: 15,
     textAlign: 'center',
   },
   emptySubtext: {
     fontSize: 16,
-    color: '#7f8c8d',
+    color: '#606060',
     textAlign: 'center',
+  },
+  navigationButton: {
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: '#000000',
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  navigationButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
 

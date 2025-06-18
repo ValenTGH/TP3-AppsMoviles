@@ -122,21 +122,279 @@ export default function HistoryScreen() {
         }
     };
 
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: '#f8f9fa',
+        },
+        gearIcon: {
+            position: 'absolute',
+            top: 20,
+            right: 20,
+        },
+        header: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingHorizontal: 20,
+            paddingTop: Platform.OS === 'ios' ? 50 : 20,
+            paddingBottom: 35, 
+            backgroundColor: '#fff',
+            borderBottomWidth: 1,
+            borderBottomColor: '#e0e0e0',
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.1,
+            shadowRadius: 4,
+            elevation: 5,
+            zIndex: 10,
+        },
+        title: {
+            fontSize: 22, // Same size as the Home title
+            fontWeight: '700',
+            color: '#000', // Changed to black
+            marginTop: 50,
+        },
+        addButton: {
+            backgroundColor: '#000000',
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            justifyContent: 'center',
+            alignItems: 'center',
+            shadowColor: '#000000',
+            shadowOffset: { width: 0, height: 3 },
+            shadowOpacity: 0.3,
+            shadowRadius: 5,
+            elevation: 5,
+            marginTop:50,
+        },
+        homeButton: {
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop:50,
+        },
+        emptyState: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 40,
+        },
+        emptyText: {
+            fontSize: 20,
+            fontWeight: '600',
+            color: '#457b9d',
+            marginTop: 20,
+            marginBottom: 5,
+        },
+        emptySubtext: {
+            fontSize: 16,
+            color: '#7f8c8d',
+            marginBottom: 30,
+            textAlign: 'center',
+        },
+        primaryButton: {
+            backgroundColor: '#4a6fa5',
+            paddingVertical: 15,
+            paddingHorizontal: 30,
+            borderRadius: 10,
+            marginTop: 20,
+        },
+        primaryButtonText: {
+            color: '#fff',
+            fontSize: 16,
+            fontWeight: '600',
+        },
+        listContent: {
+            padding: 20,
+            paddingBottom: 40,
+        },
+        resultsText: {
+            fontSize: 14,
+            color: '#7f8c8d',
+            marginBottom: 15,
+            textAlign: 'right',
+        },
+        entryCard: {
+            backgroundColor: '#fff',
+            borderRadius: 12,
+            padding: 20,
+            marginBottom: 15,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.1,
+            shadowRadius: 6,
+            elevation: 3,
+        },
+        entryHeader: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: 10,
+        },
+        entryDate: {
+            fontSize: 14,
+            color: '#7f8c8d',
+            fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-medium',
+        },
+        entryEmotion: {
+            fontSize: 28,
+        },
+        entryNote: {
+            fontSize: 16,
+            color: '#2c3e50',
+            lineHeight: 24,
+            marginBottom: 15,
+        },
+        actionsContainer: {
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            gap: 15,
+        },
+        editButton: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingVertical: 8,
+            paddingHorizontal: 12,
+            borderRadius: 8,
+            backgroundColor: 'rgba(74, 111, 165, 0.1)',
+        },
+        editButtonText: {
+            color: '#4a6fa5',
+            marginLeft: 5,
+            fontWeight: '500',
+        },
+        deleteButton: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingVertical: 8,
+            paddingHorizontal: 12,
+            borderRadius: 8,
+            backgroundColor: 'rgba(230, 57, 70, 0.1)',
+        },
+        deleteButtonText: {
+            color: '#e63946',
+            marginLeft: 5,
+            fontWeight: '500',
+        },
+        modalContainer: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        },
+        modalContent: {
+            width: width * 0.85,
+            backgroundColor: '#fff',
+            borderRadius: 12,
+            padding: 20,
+            alignItems: 'center', // Centra el contenido del modal
+        },
+        modalTitle: {
+            fontSize: 20,
+            fontWeight: '600',
+            color: '#2c3e50',
+            marginBottom: 15,
+            textAlign: 'center',
+        },
+        modalEmotion: {
+            fontSize: 32,
+            textAlign: 'center',
+            marginBottom: 5,
+        },
+        modalDate: {
+            fontSize: 14,
+            color: '#7f8c8d',
+            textAlign: 'center',
+            marginBottom: 20,
+        },
+        modalInput: {
+            width: '100%',
+            minHeight: 120,
+            borderColor: '#dfe6e9',
+            borderWidth: 1,
+            borderRadius: 8,
+            padding: 15,
+            marginBottom: 20,
+            backgroundColor: '#fff',
+            fontSize: 16,
+            textAlignVertical: 'top',
+        },
+        modalButtons: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            width: '100%',
+            marginTop: 10,
+        },
+        modalCancelButton: {
+            flex: 1,
+            padding: 15,
+            borderRadius: 8,
+            alignItems: 'center',
+            marginRight: 10,
+            backgroundColor: '#f1f1f1',
+        },
+        modalCancelText: {
+            color: '#2c3e50',
+            fontWeight: '500',
+        },
+        modalSaveButton: {
+            flex: 1,
+            padding: 15,
+            borderRadius: 8,
+            alignItems: 'center',
+            backgroundColor: '#4a6fa5',
+        },
+        modalSaveText: {
+            color: '#fff',
+            fontWeight: '500',
+        },
+        modalIcon: {
+            marginBottom: 10,
+        },
+        modalMessage: {
+            fontSize: 16,
+            color: '#7f8c8d',
+            textAlign: 'center',
+            marginBottom: 20,
+        },
+        deleteConfirmButton: {
+            backgroundColor: '#e63946', 
+        },
+        card: {
+            padding: 20,
+            margin: 10,
+            backgroundColor: '#f0f0f0',
+            borderRadius: 10,
+            shadowColor: '#000000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.3,
+            shadowRadius: 4,
+            elevation: 5,
+        },
+    });
+
     return (
         <View style={styles.container}>
+            <TouchableOpacity style={styles.gearIcon}>
+                <Ionicons name="settings" size={24} color="#000000" />
+            </TouchableOpacity>
             <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.homeButton}
                     onPress={() => navigation.navigate('Home')}
                 >
-                    <Ionicons name="home" size={28} color="#4a6fa5" />
+                    <Ionicons name="home" size={28} color="#000000" />
                 </TouchableOpacity>
-                <Text style={styles.title}>Tu Diario Emocional</Text>
+                <Text style={styles.title}>Tus emociones</Text>
                 <TouchableOpacity
                     style={styles.addButton}
                     onPress={() => navigation.navigate('Add')}
                 >
-                    <Ionicons name="add" size={28} color="#fff" />
+                    <Ionicons name="add" size={28} color="#ffffff" />
                 </TouchableOpacity>
             </View>
 
@@ -304,19 +562,19 @@ const styles = StyleSheet.create({
         zIndex: 10,
     },
     title: {
-        fontSize: 22,
+        fontSize: 22, // Same size as the Home title
         fontWeight: '700',
-        color: '#2c3e50',
-        marginTop:50,
+        color: '#000', // Changed to black
+        marginTop: 50,
     },
     addButton: {
-        backgroundColor: '#4a6fa5',
+        backgroundColor: '#000000',
         width: 50,
         height: 50,
         borderRadius: 25,
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: '#4a6fa5',
+        shadowColor: '#000000',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.3,
         shadowRadius: 5,
@@ -517,4 +775,16 @@ const styles = StyleSheet.create({
     },
     deleteConfirmButton: {
         backgroundColor: '#e63946', 
+    },
+    card: {
+        padding: 20,
+        margin: 10,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 10,
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 5,
+    },
 });

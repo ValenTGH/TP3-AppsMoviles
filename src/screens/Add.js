@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Dimensions, Alert, KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Dimensions, Alert, KeyboardAvoidingView, Platform, ScrollView, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const { width } = Dimensions.get('window');
 
@@ -44,7 +43,6 @@ export default function Add() {
                 ...newEntry,
                 id: entryId,
                 createdAt: new Date().toISOString(),
-                formattedDate: newEntry.date
             };
 
             const existingEntriesJson = await AsyncStorage.getItem('wellbeingEntries');
@@ -90,6 +88,123 @@ export default function Add() {
         { emoji: '🥳', name: 'Emocionado' }
     ];
 
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: '#ffffff',
+            padding: 20,
+            position: 'relative',
+        },
+        safeArea: {
+            flex: 1,
+        },
+        scrollContainer: {
+            padding: 24,
+            paddingTop: 0,
+            paddingBottom: 40,
+        },
+        homeButton: {
+            alignSelf: 'flex-start', 
+            padding: 10,
+            marginBottom: 10, 
+            marginTop: Platform.OS === 'ios' ? 40 : 10, 
+        },
+        dateText: {
+            alignSelf: 'flex-end',
+            fontSize: 16,
+            color: '#7f8c8d',
+            marginBottom: 30,
+            fontStyle: 'italic',
+        },
+        sectionTitle: {
+            fontSize: 22,
+            fontWeight: '500',
+            color: '#000000',
+            marginBottom: 15,
+            textAlign: 'center',
+        },
+        emotionContainer: {
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-evenly',
+            marginBottom: 30,
+        },
+        emotionButton: {
+            width: width * 0.28,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 15,
+            borderRadius: 12,
+            backgroundColor: '#000000',
+            marginBottom: 15,
+            borderWidth: 1,
+            borderColor: '#dfe6e9',
+        },
+        selectedEmotionButton: {
+            backgroundColor: '#d6eaf8',
+            borderColor: '#4a6fa5',
+        },
+        emotionText: {
+            fontSize: 32,
+            textAlign: 'center',
+            marginBottom: 5,
+        },
+        emotionLabel: {
+            color: '#ffffff',
+            fontSize: 14,
+            textAlign: 'center',
+        },
+        noteInput: {
+            width: '100%',
+            minHeight: 150,
+            borderColor: '#dfe6e9',
+            borderWidth: 1,
+            borderRadius: 12,
+            padding: 16,
+            marginBottom: 30,
+            backgroundColor: '#fff',
+            fontSize: 16,
+            lineHeight: 24,
+            textAlignVertical: 'top',
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.05,
+            shadowRadius: 4,
+            elevation: 2,
+        },
+        saveButton: {
+            backgroundColor: '#000000',
+            padding: 18,
+            borderRadius: 12,
+            alignItems: 'center',
+            justifyContent: 'center',
+            shadowColor: '#000000',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.3,
+            shadowRadius: 6,
+            elevation: 5,
+        },
+        saveButtonDisabled: {
+            opacity: 0.7,
+        },
+        saveButtonText: {
+            color: '#ffffff',
+            fontSize: 18,
+            fontWeight: '600',
+        },
+        card: {
+            padding: 20,
+            margin: 10,
+            backgroundColor: '#f0f0f0',
+            borderRadius: 10,
+            shadowColor: '#000000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.3,
+            shadowRadius: 4,
+            elevation: 5,
+        },
+    });
+
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -104,7 +219,7 @@ export default function Add() {
                         style={styles.homeButton} 
                         onPress={() => navigation.navigate('Home')} 
                     >
-                        <Ionicons name="home" size={28} color="#4a6fa5" />
+                        <Ionicons name="home" size={28} color="#000000" />
                     </TouchableOpacity>
 
                     <Text style={styles.dateText}>{newEntry.date}</Text>
@@ -155,103 +270,3 @@ export default function Add() {
         </KeyboardAvoidingView>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f8f9fa',
-    },
-    safeArea: {
-        flex: 1,
-    },
-    scrollContainer: {
-        padding: 24,
-        paddingTop: 0,
-        paddingBottom: 40,
-    },
-    homeButton: {
-        alignSelf: 'flex-start', 
-        padding: 10,
-        marginBottom: 10, 
-        marginTop: Platform.OS === 'ios' ? 40 : 10, 
-    },
-    dateText: {
-        alignSelf: 'flex-end',
-        fontSize: 16,
-        color: '#7f8c8d',
-        marginBottom: 30,
-        fontStyle: 'italic',
-    },
-    sectionTitle: {
-        fontSize: 18,
-        fontWeight: '500',
-        color: '#34495e',
-        marginBottom: 15,
-    },
-    emotionContainer: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        marginBottom: 30,
-    },
-    emotionButton: {
-        width: width * 0.28,
-        alignItems: 'center',
-        padding: 15,
-        borderRadius: 12,
-        backgroundColor: '#ecf0f1',
-        marginBottom: 15,
-        borderWidth: 1,
-        borderColor: '#dfe6e9',
-    },
-    selectedEmotionButton: {
-        backgroundColor: '#d6eaf8',
-        borderColor: '#4a6fa5',
-    },
-    emotionText: {
-        fontSize: 32,
-        marginBottom: 5,
-    },
-    emotionLabel: {
-        fontSize: 14,
-        color: '#2c3e50',
-    },
-    noteInput: {
-        width: '100%',
-        minHeight: 150,
-        borderColor: '#dfe6e9',
-        borderWidth: 1,
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 30,
-        backgroundColor: '#fff',
-        fontSize: 16,
-        lineHeight: 24,
-        textAlignVertical: 'top',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-        elevation: 2,
-    },
-    saveButton: {
-        backgroundColor: '#4a6fa5',
-        padding: 18,
-        borderRadius: 12,
-        alignItems: 'center',
-        justifyContent: 'center',
-        shadowColor: '#4a6fa5',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 6,
-        elevation: 5,
-    },
-    saveButtonDisabled: {
-        opacity: 0.7,
-    },
-    saveButtonText: {
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: '600',
-    },
-});

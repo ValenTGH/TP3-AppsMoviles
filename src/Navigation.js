@@ -6,16 +6,23 @@ import Home from './screens/Home';
 import Add from './screens/Add';
 import HistoryScreen from './screens/HistoryScreen'; 
 import StatsScreen from './screens/StatsScreen';
+import { Ionicons } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
 
-function MyStack(){
+function MyStack() {
     return (
-        <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={Home} options={{ title: 'Bienvenida', headerShown: false, }} />
-            <Stack.Screen name="Add" component={Add} options={{ title: 'Registrar Emoción', headerShown: false, }} />
-            <Stack.Screen name="History" component={HistoryScreen} options={{ title: 'Tu Historial', headerShown: false, }} />
-            <Stack.Screen name="Stats" component={StatsScreen} options={{ title: 'Estadísticas', headerShown: false, }} />
+        <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Add" component={Add} />
+            <Stack.Screen name="History" component={HistoryScreen} />
+            <Stack.Screen name="Stats" component={StatsScreen} />
+
         </Stack.Navigator>
     );
 }
