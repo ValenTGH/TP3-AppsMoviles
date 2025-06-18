@@ -29,7 +29,7 @@ Una aplicación diseñada para ayudarte a registrar y reflexionar sobre tus emoc
 
 //Estructura del Proyecto
 
-```
+
 TP3-AppsMoviles/
 ├── App.js
 ├── app.config.js
@@ -51,4 +51,4 @@ TP3-AppsMoviles/
 │   │   ├── HistoryScreen.js
 │   │   ├── Home.js
 │   │   ├── StatsScreen.js
-```
+
