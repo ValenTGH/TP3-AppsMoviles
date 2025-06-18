@@ -6,10 +6,8 @@ Una aplicación diseñada para ayudarte a registrar y reflexionar sobre tus emoc
 //Funcionalidades
 - **Registro de emociones**: Selecciona cómo te sientes y agrega una breve nota sobre tu día.
 - **Historial de entradas**: Revisa tus registros anteriores organizados por fecha.
-- **Frases motivacionales**: Obtén inspiración diaria con frases motivacionales conectadas a través de una API.
+- **Frases motivacionales**: Obtén inspiración diaria con frases motivacionales.
 - **Estadísticas**: Visualiza tus emociones más frecuentes y analiza tu actividad semanal.
-- **Tema claro/oscuro**: Ajusta el tema de la app según tu preferencia o la hora del día.
-- **Autenticación**: Protege tus registros con un sistema de autenticación personal.
 
 //Cómo usar
 1. **Nueva entrada**: Registra tus emociones y reflexiones diarias desde la pantalla principal.
