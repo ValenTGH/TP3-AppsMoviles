@@ -1,0 +1,54 @@
+//Diario de Bienestar
+
+//Descripción
+Una aplicación diseñada para ayudarte a registrar y reflexionar sobre tus emociones y experiencias diarias. Con un enfoque en el bienestar personal, esta app te permite llevar un seguimiento de tus estados de ánimo, notas personales y más.
+
+//Funcionalidades
+- **Registro de emociones**: Selecciona cómo te sientes y agrega una breve nota sobre tu día.
+- **Historial de entradas**: Revisa tus registros anteriores organizados por fecha.
+- **Frases motivacionales**: Obtén inspiración diaria con frases motivacionales conectadas a través de una API.
+- **Estadísticas**: Visualiza tus emociones más frecuentes y analiza tu actividad semanal.
+- **Tema claro/oscuro**: Ajusta el tema de la app según tu preferencia o la hora del día.
+- **Autenticación**: Protege tus registros con un sistema de autenticación personal.
+
+//Cómo usar
+1. **Nueva entrada**: Registra tus emociones y reflexiones diarias desde la pantalla principal.
+2. **Historial**: Accede a tus registros pasados y edítalos si es necesario.
+3. **Estadísticas**: Analiza tus emociones más frecuentes y tu actividad semanal.
+4. **Frases motivacionales**: Encuentra inspiración diaria en la pantalla principal.
+
+//Tecnologías utilizadas
+- **React Native**: Para el desarrollo de la interfaz de usuario.
+- **Firebase**: Para el almacenamiento seguro de datos.
+- **Expo**: Para facilitar el desarrollo y la implementación.
+
+//Instalación
+1. Clona este repositorio.
+2. Instala las dependencias con `npm install`.
+3. Inicia la aplicación con `npm start`.
+
+//Estructura del Proyecto
+
+```
+TP3-AppsMoviles/
+├── App.js
+├── app.config.js
+├── index.js
+├── package.json
+├── README
+├── assets/
+│   ├── adaptive-icon.png
+│   ├── favicon.png
+│   ├── icon.png
+│   ├── splash-icon.png
+├── src/
+│   ├── Navigation.js
+│   ├── components/
+│   ├── config/
+│   │   └── fb.js
+│   ├── screens/
+│   │   ├── Add.js
+│   │   ├── HistoryScreen.js
+│   │   ├── Home.js
+│   │   ├── StatsScreen.js
+```
